@@ -1,6 +1,14 @@
+import example.*
 
-test "testX" {
+describe "Tests Vapor"{
+	
+	const player1= new Jugador(cantTotalHoras = 10)
+	const sims = new Juego(precio = 200, dificultad = 2, sangrePorHora=3, estilo= fps)
+	
+	
+	test "Una compra no puede se realizada si un jugador no tiene suficiente dinero" {
+		assert.throwsExceptionWithMessage("No es posible concretar la compra",{player1.comprarJuego(sims)})
 
-	assert.that(true)
-
+	}
+	
 }
