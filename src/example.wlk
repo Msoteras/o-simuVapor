@@ -10,10 +10,10 @@ class Logro{
 
 class Avance inherits Logro{
 	var horas
-	var dificultad
+	
 	override method esImportante() = false
 	
-	override method cantGemasOtorgadas() = horas * dificultad
+	override method cantGemasOtorgadas() = horas * juego.dificultad()
 }
 
 class Secreto inherits Logro{
@@ -24,9 +24,8 @@ class Secreto inherits Logro{
 
 class ExperinciaAlcanzada inherits Logro{
 	var horas
-	var dificultad
 	
-	override method cantGemasOtorgadas() = horas/10 + dificultad
+	override method cantGemasOtorgadas() = horas/10 + juego.dificultad()
 }
 
 class Genio inherits ExperinciaAlcanzada{
@@ -123,7 +122,7 @@ object aventura{
 object pelea{
 	
 	method otorgarLogrosA(jugador, horasJugadas, unJuego){
-		jugador.logros().add(new Avance(horas = horasJugadas, dificultad = unJuego.dificultad(), juego = unJuego))
+		jugador.logros().add(new Avance(horas = horasJugadas, juego = unJuego))
 		if(self.sangreTotal(horas, unJuego)>10){
 			jugador.logros().add(new Secreto(cantidadGemasAOtorgar = jugador.cantTotalHoras()/10, juego = unJuego))
 		}
